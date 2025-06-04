@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import html2pdf from "html2pdf.js";
 import {
   Card,
   CardContent,
@@ -17,6 +18,7 @@ import {
 } from "@/components/ui/accordion";
 import { Download, RefreshCw, AlertTriangle, CheckCircle } from "lucide-react";
 import AllocationChart from "./AllocationChart";
+import { useNavigate } from "react-router-dom";
 
 // Types for backend response
 interface Fund {
@@ -51,8 +53,10 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
   hasTermInsurance = false,
   hasEmergencyFund = false,
 }) => {
+  const dashboardRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate(); // Add this line
   const [data, setData] = useState({
-    advice: "",
+    advice: [],
     breakdown: [],
     funds: {},
   });
@@ -120,9 +124,15 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
 
   const warnings = generateWarnings();
 
-  // Download plan placeholder
   const handleDownloadPlan = () => {
-    console.log("Downloading plan...");
+    if (dashboardRef.current) {
+      html2pdf().from(dashboardRef.current).save("investment-plan.pdf");
+    }
+  };
+
+  // Update the recalculate handler to navigate
+  const handleRecalculate = () => {
+    navigate("/plan"); // Change "/plan" to your actual plan page route if different
   };
 
   // Calculate total amount for display
@@ -130,8 +140,12 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
     ? breakdown.reduce((sum, cat) => sum + cat.amount, 0)
     : 0;
 
+  console.log("Advice prop:", advice);
+
+  if (!advice) return <div>Loading...</div>;
+
   return (
-    <div className="w-full max-w-7xl mx-auto p-4 bg-background">
+    <div ref={dashboardRef} className="w-full max-w-7xl mx-auto p-4 bg-background">
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2">Your Investment Plan</h1>
         <p className="text-muted-foreground">
@@ -289,7 +303,7 @@ const ResultsDashboard: React.FC<ResultsDashboardProps> = ({
                 </div>
               </CardContent>
               <CardFooter className="flex justify-between">
-                <Button variant="outline" onClick={onRecalculate}>
+                <Button variant="outline" onClick={handleRecalculate}>
                   <RefreshCw className="mr-2 h-4 w-4" /> Recalculate
                 </Button>
                 <Button onClick={handleDownloadPlan}>
