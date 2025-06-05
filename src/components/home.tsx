@@ -16,14 +16,25 @@ const Home = () => {
             Smart, simple, and responsible investment planning for young
             professionals.
           </p>
-          <Link to="/plan">
-            <Button
-              size="lg"
-              className="text-lg px-8 py-6 rounded-lg bg-blue-600 hover:bg-blue-700"
-            >
-              Start Planning <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/plan">
+              <Button
+                size="lg"
+                className="text-lg px-8 py-6 rounded-lg bg-blue-600 hover:bg-blue-700"
+              >
+                Start Planning <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/home-loan">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 py-6 rounded-lg border-blue-600 text-blue-600 hover:bg-blue-50"
+              >
+                Home Loan Advisor <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -84,14 +95,25 @@ const Home = () => {
           <p className="text-xl text-gray-600 mb-8">
             Create your personalized investment plan in just a few clicks.
           </p>
-          <Link to="/plan">
-            <Button
-              size="lg"
-              className="text-lg px-8 py-6 rounded-lg bg-blue-600 hover:bg-blue-700"
-            >
-              Start Planning <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/plan">
+              <Button
+                size="lg"
+                className="text-lg px-8 py-6 rounded-lg bg-blue-600 hover:bg-blue-700"
+              >
+                Start Planning <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/home-loan">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 py-6 rounded-lg border-blue-600 text-blue-600 hover:bg-blue-50"
+              >
+                Home Loan Advisor <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
