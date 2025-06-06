@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 const Plan = () => {
   const navigate = useNavigate();
 
+  const apiBaseUrl = process.env.VITE_APP_API_URL;
+
   const handleFormSubmit = async (formData: any) => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/investment-plan", {
+      const response = await fetch(`${apiBaseUrl}/api/investment-plan`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -42,6 +42,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+const apiBaseUrl = process.env.VITE_APP_API_URL;
+
 const formSchema = z.object({
   monthlyIncome: z.coerce.number().min(1, "Monthly income is required"),
   existingEmis: z.coerce.number().min(0, "Existing EMIs cannot be negative"),
@@ -73,7 +75,16 @@ interface LoanAdviceResponse {
 const HomeLoanAdvisor = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState<LoanAdviceResponse | null>(null);
+  type LoanAdviceTransformed = {
+    eligible: boolean;
+    calculatedEmi: number;
+    totalEmi: number;
+    safeEmiLimit: number;
+    suggestions: string[];
+    eligibilityReason?: string;
+  };
+  
+  const [results, setResults] = useState<LoanAdviceTransformed | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [interestRate, setInterestRate] = useState(8.5);
   const [tenure, setTenure] = useState(20);
@@ -138,7 +149,7 @@ const HomeLoanAdvisor = () => {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:5000/api/home-loan/advice",
+        `${apiBaseUrl}/api/home-loan/advice`,
         {
           method: "POST",
           headers: {

@@ -1,45 +1,11 @@
 # SmartInvest Frontend
 
-## Getting Started
+SmartInvest Frontend is a modern web application designed to help users manage and track their investments efficiently.
 
-### Prerequisites
+## Features
 
-- [Node.js](https://nodejs.org/) (v14 or higher)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
-
-### Installation
-
-```bash
-git clone https://github.com/yourusername/SmartInvest-Frontend.git
-cd SmartInvest-Frontend
-npm install
-```
-
-### Running the Application
-
-```bash
-npm start
-```
-
-The app will be available at `http://localhost:3000`.
-
-## Project Structure
-
-```
-/src
-  /components
-  /pages
-  /services
-  /assets
-```
-
-## Contributing
-
-Contributions are welcome! Please open issues or submit pull requests for improvements and bug fixes.
-
-## License
-
-This project is licensed under the MIT License.
-
----
-*SmartInvest Frontend © 2024*
+- Simple platform to explore investment ideas for entering the stock market and mutual funds
+- Includes a home loan adviser tool
+- Real-time portfolio tracking
+- Investment analytics and insights
+- Responsive and intuitive UI
