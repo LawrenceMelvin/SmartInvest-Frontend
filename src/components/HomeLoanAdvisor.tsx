@@ -63,12 +63,11 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 interface LoanAdviceResponse {
-  eligible: boolean;
-  calculatedEmi: number;
-  totalEmi: number;
-  safeEmiLimit: number;
+  status: string;
+  monthly_emi: number;
+  total_monthly_emi_with_existing: number;
+  max_safe_emi: number;
   suggestions: string[];
-  eligibilityReason?: string;
 }
 
 const HomeLoanAdvisor = () => {
@@ -154,7 +153,17 @@ const HomeLoanAdvisor = () => {
       }
 
       const result = await response.json();
-      setResults(result);
+      // Transform the backend response to match our component's expected format
+      const transformedResult = {
+        eligible: result.status === "Eligible",
+        calculatedEmi: Math.round(result.monthly_emi),
+        totalEmi: Math.round(result.total_monthly_emi_with_existing),
+        safeEmiLimit: Math.round(result.max_safe_emi),
+        suggestions: result.suggestions || [],
+        eligibilityReason:
+          result.status !== "Eligible" ? `Status: ${result.status}` : undefined,
+      };
+      setResults(transformedResult);
       setCurrentStep(3);
     } catch (err) {
       setError("Failed to get loan advice. Please try again.");
