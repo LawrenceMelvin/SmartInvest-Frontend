@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Plan = () => {
   const navigate = useNavigate();
 
-  const apiBaseUrl = process.env.VITE_APP_API_URL;
+  const apiBaseUrl = import.meta.env.VITE_APP_API_URL;
 
   const handleFormSubmit = async (formData: any) => {
     try {

@@ -42,7 +42,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const apiBaseUrl = process.env.VITE_APP_API_URL;
+const apiBaseUrl = import.meta.env.VITE_APP_API_URL;
 
 const formSchema = z.object({
   monthlyIncome: z.coerce.number().min(1, "Monthly income is required"),
