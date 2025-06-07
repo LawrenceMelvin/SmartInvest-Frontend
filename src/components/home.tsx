@@ -25,6 +25,15 @@ const Home = () => {
                 Start Planning <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
+            <Link to="/dashboard">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 py-6 rounded-lg border-green-600 text-green-600 hover:bg-green-50"
+              >
+                Goal Calculator <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
             <Link to="/home-loan">
               <Button
                 size="lg"
@@ -102,6 +111,15 @@ const Home = () => {
                 className="text-lg px-8 py-6 rounded-lg bg-blue-600 hover:bg-blue-700"
               >
                 Start Planning <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/dashboard">
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg px-8 py-6 rounded-lg border-green-600 text-green-600 hover:bg-green-50"
+              >
+                Goal Calculator <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/home-loan">
